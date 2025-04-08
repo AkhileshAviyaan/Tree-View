@@ -1,0 +1,35 @@
+<Window
+	x:Class="Tree_View.Views.MainWindow"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:model="using:AvaloniaControls.Models"
+	xmlns:vm="using:Tree_View.ViewModels"
+	Title="Tree_View"
+	d:DesignHeight="600"
+	d:DesignWidth="400"
+	x:DataType="vm:MainWindowViewModel"
+	Icon="/Assets/avalonia-logo.ico"
+	mc:Ignorable="d">
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel />
+	</Design.DataContext>
+	<StackPanel>
+		<HeaderedContentControl Header="Tree View">
+			<StackPanel>
+				<TreeView ItemsSource="{Binding WSPTest}">
+					<TreeView.DataTemplates>
+						<TreeDataTemplate DataType="model:SubNode" ItemsSource="{Binding SubNodes}">
+							<CheckBox Content="{Binding Title}" IsChecked="{Binding IsChecked}" />
+						</TreeDataTemplate>
+						<TreeDataTemplate DataType="model:Node" ItemsSource="{Binding SubNodes}">
+							<TextBlock Text="{Binding Title}" />
+						</TreeDataTemplate>
+					</TreeView.DataTemplates>
+				</TreeView>
+			</StackPanel>
+		</HeaderedContentControl>
+	</StackPanel>
+</Window>
