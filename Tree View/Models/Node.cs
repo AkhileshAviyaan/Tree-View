@@ -1,10 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using System.Drawing;
 
 namespace AvaloniaControls.Models
 {
 	public class Node
 	{
-		public ObservableCollection<Node>? SubNodes { get; set; }
+		public ObservableCollection<Node>? Children { get; set; }
 		public string Title { get; set; }
 
 		public Node(string title)
@@ -15,21 +16,24 @@ namespace AvaloniaControls.Models
 		public Node(string title, ObservableCollection<Node> subNodes)
 		{
 			Title = title;
-			SubNodes = subNodes;
+			Children = subNodes;
 		}
 	}
 	public class SubNode:Node
 	{
 		public bool IsChecked { get; set; }
+		public Avalonia.Media.Imaging.Bitmap Icon { get; set; }
 		public SubNode(string title):base(title)
 		{
 			Title = title;
+			Icon = BitmapHelper.GetPointTypeBitmap();
 		}
 
 		public SubNode(string title, ObservableCollection<Node> subNodes):base(title,subNodes)
 		{
 			Title = title;
-			SubNodes = subNodes;
+			Children = subNodes;
+			Icon = BitmapHelper.GetPointTypeBitmap();
 		}
 	}
 }

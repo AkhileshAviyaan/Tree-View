@@ -21,10 +21,22 @@
 			<StackPanel>
 				<TreeView ItemsSource="{Binding WSPTest}">
 					<TreeView.DataTemplates>
-						<TreeDataTemplate DataType="model:SubNode" ItemsSource="{Binding SubNodes}">
-							<CheckBox Content="{Binding Title}" IsChecked="{Binding IsChecked}" />
+						<TreeDataTemplate DataType="model:SubNode" ItemsSource="{Binding Children}">
+							<CheckBox IsChecked="{Binding IsChecked}">
+								<CheckBox.Content>
+									<StackPanel Orientation="Horizontal" Spacing="8">
+										<Image
+											Width="16"
+											Height="16"
+											Source="{Binding Icon}" />
+										<TextBlock VerticalAlignment="Center" Text="{Binding Title}" />
+									</StackPanel>
+								</CheckBox.Content>
+							</CheckBox>
+
+
 						</TreeDataTemplate>
-						<TreeDataTemplate DataType="model:Node" ItemsSource="{Binding SubNodes}">
+						<TreeDataTemplate DataType="model:Node" ItemsSource="{Binding Children}">
 							<TextBlock Text="{Binding Title}" />
 						</TreeDataTemplate>
 					</TreeView.DataTemplates>
